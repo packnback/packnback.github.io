@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on packnback</title>
+    <link>https://packnback.github.io/blog/</link>
+    <description>Recent content in Blogs on packnback</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Aug 2018 09:25:10 +1200</lastBuildDate>
+    
+	<atom:link href="https://packnback.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Work begins</title>
+      <link>https://packnback.github.io/blog/work_begins/</link>
+      <pubDate>Fri, 10 Aug 2018 09:25:10 +1200</pubDate>
+      
+      <guid>https://packnback.github.io/blog/work_begins/</guid>
+      <description>This is the beginning of a project to design and implement a new backup tool called packnback designed to solve some of the limitations of existing tools.
+It makes sense to explain why I we should bother in the first place, and what interesting features a new tool can bring to the table.
+Ideal features I will outline features I think are important in a backup tool, lets compare them to existing tools and then discuss prior work and why we might want to design a new tool.</description>
+    </item>
+    
+  </channel>
+</rss>

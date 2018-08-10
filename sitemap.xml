@@ -3,8 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://packnback.github.io/introducing_packnback/</loc>
+    <loc>https://packnback.github.io/contact/</loc>
     <lastmod>2018-08-10T09:25:10+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://packnback.github.io/donate/</loc>
+    <lastmod>2018-08-10T09:25:10+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://packnback.github.io/blog/work_begins/</loc>
+    <lastmod>2018-08-10T09:25:10+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://packnback.github.io/blog/</loc>
+    <lastmod>2018-08-10T09:25:10+12:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
