@@ -36,16 +36,18 @@ and what interesting features a new tool can bring to the table.</p>
 <h1 id="ideal-features">Ideal features</h1>
 
 <p>Let&rsquo;s list features that are important in a backup tool and
-them to existing tools, this will hopefully give you a good
-idea of the current backup tool choices you might have
-as an administrator trying to bullet proof a production
-environment.</p>
+them to existing tools so we get a good idea of the current backup tool
+choices you might have as an administrator trying to bullet proof a your server environment.</p>
 
 <h3 id="data-deduplication">Data deduplication</h3>
 
-<p>Don&rsquo;t store or upload the same data twice, and share data across
-backups. This is important as we can do daily snapshots
-while having low bandwidth and storage requirements.</p>
+<p>Don&rsquo;t store or upload the same data twice when not necessary.
+Share data across backups, this could be across identicle files,
+or even within files with repetitive data.</p>
+
+<p>With this feature we can do daily/hourly/whatever snapshots
+while having low bandwidth and storage requirements. The
+first backup may take 20 GB, but the next may only be 200 MB.</p>
 
 <h3 id="write-only-mode">Write-only mode</h3>
 
@@ -54,8 +56,9 @@ we want there to be no way machine A can delete it, instead
 the administrator of machine B must authorize deletion.</p>
 
 <p>This is extremely important in the event that machine A becomes
-infected by ransomware or another such attacker. It should not
-be able to compromise the integrity of its</p>
+infected by ransomware or another such attacker. A compromised
+machine should only be able to compromise future backups,
+but never past backups.</p>
 
 <h3 id="client-side-encryption">Client side encryption</h3>
 
@@ -65,10 +68,10 @@ there is no reason a backup server needs to be able to read
 any backup data being stored on it. If data is encrypted client
 side before it reaches a server and decrypted client side after
 retrieving data, there is no reason the server needs access to the
-unencrypted data.</p>
+unencrypted data at all.</p>
 
 <p>Client side encryption limits trust in the server to storing data, and enforcing
-write only mode actions, but never to reading it. If
+write only mode actions, but never to reading data. If
 the server fails it&rsquo;s storage duty, cryptography will notify
 us of corrupt data or data that has been tampered with.</p>
 
@@ -78,21 +81,23 @@ us of corrupt data or data that has been tampered with.</p>
 to be decrypted using any encryption key material
 stored on the uploading machine. This is for the same
 reason we would like write only mode, to keep data away
-from attackers in the event of a security break.</p>
+from attackers in the event of a security breach.</p>
 
-<p>This implies feature implies public key cryptography where we discard a
-portion of a generated encryption key per backup. The private
-key of the backup owner decrypts the backup, not any keys saved
-on the machine uploading backups.</p>
+<p>This feature implies public key cryptography where we discard a
+portion of a generated encryption key per backup. Only the designated
+reciever secret key will be able to decrypt the data, not the sender.</p>
 
 <h3 id="pruning">Pruning</h3>
 
-<p>Be able to rotate and prune backups is an important feature,
+<p>Being able to rotate and prune backups is a useful feature,
 deduplication of data complicates things slightly as
 it requires either <a href="https://en.wikipedia.org/wiki/Reference_counting">reference counting</a>
 or <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collection</a>,
 which in turn requires some concurrency controls. This is a why some
 tools mentioned do not support pruning of data.</p>
+
+<p>With easy data pruning, being able to design backup systems with upper bounds on costs
+without manual intervention is a win for everyone.</p>
 
 <h3 id="open-source">Open source</h3>
 
@@ -100,7 +105,10 @@ tools mentioned do not support pruning of data.</p>
 to trust thier implementation is reliable, and to trust
 the privacy guarantees it offers.</p>
 
-<h2 id="prior-works">Prior works</h2>
+<h2 id="other-tools">Other tools</h2>
+
+<p>So now we have a list of features we would like, lets check what exists in the world
+today&hellip;</p>
 
 <table>
 <thead>
@@ -180,19 +188,21 @@ the privacy guarantees it offers.</p>
 
 <p>(There are definitely other tools, let me know and the feature sets and I will add them to the list.)</p>
 
-<p>Currently, <em>to my knowledge</em> no current software matches my requirements&hellip; (or yours perhaps?). This
-means there may be a point in the design space that solves some problems. Now we have a starting point
-for a set of requirements, the needed design will be much more clear.</p>
-
-<p>I have private code snippets that implement and prototype a great deal of my solution,
-but this blog will serve as both documentation, a way to get feedback in a trickled and controlled way.</p>
+<p>Currently, <em>to my knowledge</em> no current software matches the requirements&hellip; (or yours perhaps?). This
+means there may be a point in the design space that is unaddressed that we can target. So until
+we have a good reason not to, I think it is a worthy project, and hence this post.</p>
 
 <h1 id="summary">Summary</h1>
 
 <p>This blog series will be about designing and implementing a backup tool
-that should tick every box, while trying to be as simple as possible.</p>
+that should tick every box in our feature list (while trying to be as simple as possible).</p>
 
-<p>Stay tuned for the next post&hellip;</p>
+<p>The current plan is to release small, usable, command line tools incrementally as they are implemented,
+along with blog posts and a big picture of how they will compose into a larger robust backup tool.</p>
+
+<p>Please let me know if this interests you, so we can make informed decisions about what people care about.</p>
+
+<p>That&rsquo;s all for now, and stay tuned for the next post.</p>
 
 			</div>
 			<hr>
