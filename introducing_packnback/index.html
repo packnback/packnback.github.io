@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Introducing packnback</title>
+	
+	
+	<link rel="stylesheet" href="http://packnback.org/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.36.1" />
+</head>
+<body>
+	<header>
+		<a href="http://packnback.org/">packnback</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<h1>Introducing packnback</h1>
+			<time>10.08.2018 09:25</time>
+			<div>
+				
+
+<p>This is the beginning of a project to design a new backup tool called
+packnback designed to solve some of the limitations of existing tools.</p>
+
+<p>It makes sense to explain why I we should bother in the first place,
+and what interesting features a new tool can bring to the table.</p>
+
+<h1 id="ideal-features">Ideal features</h1>
+
+<p>I will outline features I think are important in a backup tool, lets
+compare them to existing tools and then discuss prior work
+and why we might want to design a new tool.</p>
+
+<h3 id="data-deduplication">Data deduplication</h3>
+
+<p>Don&rsquo;t store or upload the same data twice, and share data across
+backups. This is important as we can do daily snapshots
+while having low bandwidth and storage requirements.</p>
+
+<h3 id="write-only-mode">Write-only mode</h3>
+
+<p>Once a backup is transferred from machine A to machine B
+we want there to be no way machine A can delete it, instead
+the administrator of machine B must authorize deletion.</p>
+
+<p>This is extremely important in the event that machine A becomes
+infected by ransomware or another such attacker. It should not
+be able to compromise the integrity of its</p>
+
+<h3 id="client-side-encryption">Client side encryption</h3>
+
+<p>Much like an email server cannot read gpg encrypted emails as
+it relays them to the desired addresses,
+there is no reason a backup server needs to be able to read
+any backup data being stored on it. If data is encrypted client
+side before it reaches a server and decrypted client side after
+retrieving data, there is no reason the server needs access to the
+unencrypted data.</p>
+
+<p>Client side encryption limits trust in the server to storing data, and enforcing
+write only mode actions, but never to reading it. If
+the server fails it&rsquo;s storage duty, cryptography will notify
+us of corrupt data or data that has been tampered with.</p>
+
+<h3 id="secure-decryption-keys">Secure decryption keys</h3>
+
+<p>Once a backup has been made, it should not be able
+to be decrypted using any encryption key material
+stored on the uploading machine. This is for the same
+reason we would like write only mode, to keep data away
+from attackers in the event of a security break.</p>
+
+<p>This implies feature implies public key cryptography where we discard a
+portion of a generated encryption key per backup. The private
+key of the backup owner decrypts the backup, not any keys saved
+on the machine uploading backups.</p>
+
+<h3 id="pruning">Pruning</h3>
+
+<p>Be able to rotate and prune backups is an important feature,
+deduplication of data complicates things slightly as
+it requires either <a href="https://en.wikipedia.org/wiki/Reference_counting">reference counting</a>
+or <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">garbage collection</a>,
+which in turn requires some concurrency controls. This is a why some
+tools mentioned do not support pruning of data.</p>
+
+<h3 id="open-source">Open source</h3>
+
+<p>We need to be able to see the source code of tools
+to trust thier implementation is reliable, and to trust
+the privacy guarantees it offers.</p>
+
+<h2 id="prior-works">Prior works</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Project</th>
+<th align="center">Dedup</th>
+<th align="center">Write-only</th>
+<th align="center">Encryption</th>
+<th align="center">Forward Secrecy</th>
+<th align="center">Pruning</th>
+<th align="center">Open source</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><a href="https://borgbackup.readthedocs.io/en/stable/">borg backup</a></td>
+<td align="center">y</td>
+<td align="center">y</td>
+<td align="center">y</td>
+<td align="center">n</td>
+<td align="center">y</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/bup/bup">bup</a></td>
+<td align="center">y</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/bup/bup">zbackup</a></td>
+<td align="center">y</td>
+<td align="center">n</td>
+<td align="center">y</td>
+<td align="center">n</td>
+<td align="center">y</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://restic.net/">restic</a></td>
+<td align="center">y</td>
+<td align="center">y</td>
+<td align="center">n</td>
+<td align="center">n</td>
+<td align="center">y</td>
+<td align="center">y</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://www.tarsnap.com/">tarsnap</a></td>
+<td align="center">y</td>
+<td align="center">y</td>
+<td align="center">y</td>
+<td align="center">?</td>
+<td align="center">y</td>
+<td align="center">partial-proprietry</td>
+</tr>
+</tbody>
+</table>
+
+<p>(There are definitely other tools, let me know and the feature sets and I will add them to the list.)</p>
+
+<p>Currently, <em>to my knowledge</em> no current software matches my requirements&hellip; (or yours perhaps?). So my conclusion for now</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>This blog series will be about designing and implementing a replacement set of backup tools
+that should tick every box, while trying to be as simple as possible.</p>
+
+			</div>
+			<hr>
+			<div>
+	Remember, this project needs you, consider sponsoring me to work on it at
+	<a href="">patreon</a>, <a href="">liberapay</a> or make a direct
+	donation via <a href="">bitcoin</a>.
+
+	If you cannot sponsor it, perhaps you could donate time and effort to
+	improving the documentation, code or this blog itself <a href="https://github.com/packnback">here</a>.
+</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2018 <a href="http://packnback.org/">packnback</a></p>
+	</footer>
+</body>
+</html>
