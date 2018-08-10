@@ -19,7 +19,7 @@
       <guid>https://packnback.github.io/blog/work_begins/</guid>
       <description>This is the beginning of a project to design and implement a new backup tool called packnback designed to solve some of the limitations of existing tools.
 It makes sense to explain why I we should bother in the first place, and what interesting features a new tool can bring to the table.
-Ideal features I will outline features I think are important in a backup tool, lets compare them to existing tools and then discuss prior work and why we might want to design a new tool.</description>
+Ideal features Let&amp;rsquo;s list features that are important in a backup tool and them to existing tools, this will hopefully give you a good idea of the current backup tool choices you might have as an administrator trying to bullet proof a production environment.</description>
     </item>
     
   </channel>

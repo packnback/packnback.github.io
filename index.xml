@@ -32,9 +32,8 @@ The official gpg public key for packnback@protonmail.com:
       <pubDate>Fri, 10 Aug 2018 09:25:10 +1200</pubDate>
       
       <guid>https://packnback.github.io/donate/</guid>
-      <description>Remember, this project needs you to survive, consider sponsoring it and it&amp;rsquo;s developers. Donated Funds will be used to pay for server infrastructure as well as services to advance the project. Funds may also be allocated at the discretion of the account owner to pay developers contributing to the project.
-You can donate via liberapay here.
-You can also make a direct donation direct donation at the bitcoin address here:</description>
+      <description>Remember, this project needs you to survive, consider sponsoring it and it&amp;rsquo;s development. Donated Funds will be used to pay for server infrastructure as well as services to advance the project. Funds may also be allocated at the discretion of the account owner to pay developers contributing to the project.
+Only send a donation if you understand that donations don&amp;rsquo;t guarantee project success, they are not a binding contract, but may increase the chances of success.</description>
     </item>
     
     <item>
@@ -45,7 +44,7 @@ You can also make a direct donation direct donation at the bitcoin address here:
       <guid>https://packnback.github.io/blog/work_begins/</guid>
       <description>This is the beginning of a project to design and implement a new backup tool called packnback designed to solve some of the limitations of existing tools.
 It makes sense to explain why I we should bother in the first place, and what interesting features a new tool can bring to the table.
-Ideal features I will outline features I think are important in a backup tool, lets compare them to existing tools and then discuss prior work and why we might want to design a new tool.</description>
+Ideal features Let&amp;rsquo;s list features that are important in a backup tool and them to existing tools, this will hopefully give you a good idea of the current backup tool choices you might have as an administrator trying to bullet proof a production environment.</description>
     </item>
     
   </channel>
