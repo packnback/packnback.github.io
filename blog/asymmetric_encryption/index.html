@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Asymmetric cryptography</title>
+	
+	
+	<link rel="stylesheet" href="https://packnback.github.io/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.36.1" />
+
+	
+		
+		<script type="text/javascript">
+		var _paq = _paq || [];
+		 
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+		var u="https://packnback.innocraft.cloud/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', '1']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+		</script>
+		
+	
+</head>
+<body>
+	<header>
+		<a href="https://packnback.github.io/">packnback</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<h1>Asymmetric cryptography</h1>
+			<time>September 14, 2018</time>
+			<div>
+				
+
+<p>Rather than spend time explaining (poorly) how public/asymmetric key cryptography
+works, I&rsquo;ll just summarize the parts we will be using.</p>
+
+<ul>
+<li>A key is two parts, public and private.</li>
+<li>A message can be encrypted and addressed to the public key.</li>
+<li>An encrypted message can only be decrypted by the corresponding private key.</li>
+<li>A message can be &lsquo;signed&rsquo; by a private key.</li>
+<li>A message signature can be verified as authentic using the corresponding public key.</li>
+</ul>
+
+<h1 id="an-example-encrypted-email">An example Encrypted email</h1>
+
+<p>A good example of a model we could emulate is gpg encrypted email. Anyone can send
+encrypted emails to an email server, but the email contents are encrypted and addressed
+to the recipients key pair. Only the recipient can read the message. At the same time,
+the sender could sign the message, meaning the recipient could verify the authenticity
+of the message.</p>
+
+<h1 id="how-packnback-should-work">How packnback should work</h1>
+
+<ul>
+<li>A backup server allows public keys to send encrypted data.</li>
+<li>Only the holder of the recipient key is allowed to access, delete, or download data.</li>
+<li>The server is only responsible for access control by verifying key holders.</li>
+<li>The backup recipient fetches data and decrypts it client side like an email server.</li>
+<li>The server cannot decrypt data.</li>
+<li>If the server modified data on the server, message signatures would be invalid, alerting
+the backup recipient.</li>
+</ul>
+
+<h1 id="code">Code</h1>
+
+<p>A high performance prototype tool was written here:</p>
+
+<p><a href="https://github.com/andrewchambers/asymcrypt">https://github.com/andrewchambers/asymcrypt</a>
+<a href="https://github.com/andrewchambers/asymcrypt/blob/master/README.md">https://github.com/andrewchambers/asymcrypt/blob/master/README.md</a>
+<a href="https://github.com/andrewchambers/asymcrypt/blob/master/asymcrypt_formats.5.md">https://github.com/andrewchambers/asymcrypt/blob/master/asymcrypt_formats.5.md</a></p>
+
+<p>This prototype is one of our first building blocks, for public key encrypted deduplicated
+backups. The data formats are documented there.</p>
+
+			</div>
+			<hr>
+			This project relies on sponsors and donations to survive, consider <a href="/donate/">donating</a>.
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2018 <a href="https://packnback.github.io/">packnback</a></p>
+	</footer>
+</body>
+</html>
