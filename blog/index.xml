@@ -18,7 +18,7 @@
       
       <guid>https://packnback.github.io/blog/asymmetric_encryption/</guid>
       <description>Rather than spend time explaining (poorly) how public/asymmetric key cryptography works, I&amp;rsquo;ll just summarize the parts we will be using.
- A key is two parts, public and private. A message can be encrypted and addressed to the public key. An encrypted message can only be decrypted by the corresponding private key. A message can be &amp;lsquo;signed&amp;rsquo; by a private key. A message signature can be verified as authentic using the corresponding public key.</description>
+ A key is two parts, public and private. A message can be encrypted and addressed to a key. The public part of a key can be freely distributed. An encrypted message can only be decrypted by the corresponding private key part. A message can be &amp;lsquo;signed&amp;rsquo; by someone with the private key part.</description>
     </item>
     
     <item>

@@ -50,10 +50,11 @@ works, I&rsquo;ll just summarize the parts we will be using.</p>
 
 <ul>
 <li>A key is two parts, public and private.</li>
-<li>A message can be encrypted and addressed to the public key.</li>
-<li>An encrypted message can only be decrypted by the corresponding private key.</li>
-<li>A message can be &lsquo;signed&rsquo; by a private key.</li>
-<li>A message signature can be verified as authentic using the corresponding public key.</li>
+<li>A message can be encrypted and addressed to a key.</li>
+<li>The public part of a key can be freely distributed.</li>
+<li>An encrypted message can only be decrypted by the corresponding private key part.</li>
+<li>A message can be &lsquo;signed&rsquo; by someone with the private key part.</li>
+<li>A message signature can be verified as authentic using the corresponding public key part.</li>
 </ul>
 
 <h1 id="an-example-encrypted-email">An example Encrypted email</h1>
