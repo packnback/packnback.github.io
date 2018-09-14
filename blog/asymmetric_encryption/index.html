@@ -88,6 +88,19 @@ the backup recipient.</li>
 <p>This prototype is one of our first building blocks, for public key encrypted deduplicated
 backups. The data formats are documented there.</p>
 
+<h2 id="why-not-gpg">Why not GPG?</h2>
+
+<ul>
+<li>Benchmarks showed that GPG was very slow compared
+to the prototype.</li>
+<li>In the authors opinion GPG has a poor interface for both
+human and automated interfaces.</li>
+<li>GPG file formats are very complicated.</li>
+<li>GPG can always be used as a master key, encrypting
+an asymcrypt private key.</li>
+<li>GPG is much more code, so is far harder to audit.</li>
+</ul>
+
 			</div>
 			<hr>
 			This project relies on sponsors and donations to survive, consider <a href="/donate/">donating</a>.
