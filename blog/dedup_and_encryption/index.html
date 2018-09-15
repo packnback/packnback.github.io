@@ -162,6 +162,9 @@ and build a tree datastructure by allowing blocks to reference other blocks.</p>
 <p>With this scheme even if we uploaded the same directory twice on two different occasions, blocks would be shared across the
 snapshots.</p>
 
+<p>A keen observer would note that in this scheme only the tree leaves need to be encrypted, this will be important later
+for server side garbage collection.</p>
+
 <h3 id="can-we-apply-compression">Can we apply compression?</h3>
 
 <p>I <em>think</em> is no problem when compressing the plaintext after hashing but before encryption. I will wait for feedback on that.</p>
