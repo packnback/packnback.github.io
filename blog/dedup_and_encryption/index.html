@@ -79,17 +79,17 @@ both will retrieve the same data, because the addresses are the same.</p>
 
 <pre><code>db = {}
 
-recpient_public_key = transfer_via_pidgeon_post()
+recipient_public_key = transfer_via_pidgeon_post()
 sender_public_key, sender_secret_key = keypair()
 
 data1 = &quot;hello\n&quot;
 address1 = sha1sum(data1)
-encrypted1 = encrypt(sender_secret_key, recpient_public_key, data)
-db[address1] = (recpient_public_key, sender_public_key, encrypted1)
+encrypted1 = encrypt(sender_secret_key, recipient_public_key, data)
+db[address1] = (recipient_public_key, sender_public_key, encrypted1)
 
 # The db is now:
 show(db)
--&gt; { &quot;f572d396fae9206628714fb2ce00f72e94f2258f&quot; : (recpient_public_key, sender_public_key, &quot;9853a5325dedc69527f688a0ff31620406c2d77a&quot;) }
+-&gt; { &quot;f572d396fae9206628714fb2ce00f72e94f2258f&quot; : (recipient_public_key, sender_public_key, &quot;9853a5325dedc69527f688a0ff31620406c2d77a&quot;) }
 
 </code></pre>
 
@@ -103,17 +103,17 @@ through sha1sum, and finding f572d396fae9206628714fb2ce00f72e94f2258f, The serve
 <pre><code>db = {}
 
 hmac_secret = new_secret()
-recpient_public_key = transfer_via_pidgeon_post()
+recipient_public_key = transfer_via_pidgeon_post()
 sender_public_key, sender_secret_key = keypair()
 
 data1 = &quot;hello\n&quot;
 address1 = HMAC(data1, hmac_secret)
-encrypted1 = encrypt(sender_private_key, recpient_public_key, data)
-db[address1] = (recpient_public_key, sender_public_key, encrypted1)
+encrypted1 = encrypt(sender_private_key, recipient_public_key, data)
+db[address1] = (recipient_public_key, sender_public_key, encrypted1)
 
 # The db is now:
 show(db)
--&gt; { &quot;7244e510ea361cbe17219a463a006a295247bc10&quot; : (recpient_public_key, sender_public_key, &quot;fc6de0834d85f243e5792b37f278fbf6c48b88a8&quot;) }
+-&gt; { &quot;7244e510ea361cbe17219a463a006a295247bc10&quot; : (recipient_public_key, sender_public_key, &quot;fc6de0834d85f243e5792b37f278fbf6c48b88a8&quot;) }
 
 </code></pre>
 
@@ -148,7 +148,7 @@ This key will be different to the ephemeral keys we used to encrypt our data wit
 <h3 id="hash-collisions">Hash collisions</h3>
 
 <p>Cryptographic hash functions are so difficult to find a collision for that we can effectively
-assume they don&rsquo;t happen.</p>
+assume they don&rsquo;t happen&hellip; (provided we choose the hash function wisely)</p>
 
 <h3 id="building-a-filesystem-out-of-blocks">Building a filesystem out of blocks</h3>
 
