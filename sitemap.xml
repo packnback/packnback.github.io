@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://packnback.github.io/blog/dedup_and_encryption/</loc>
+    <lastmod>2018-09-15T11:26:59+12:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://packnback.github.io/blog/asymmetric_encryption/</loc>
     <lastmod>2018-09-14T09:25:10+12:00</lastmod>
   </url>
@@ -24,7 +29,7 @@
   
   <url>
     <loc>https://packnback.github.io/blog/</loc>
-    <lastmod>2018-09-14T09:25:10+12:00</lastmod>
+    <lastmod>2018-09-15T11:26:59+12:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -40,7 +45,7 @@
   
   <url>
     <loc>https://packnback.github.io/</loc>
-    <lastmod>2018-09-14T09:25:10+12:00</lastmod>
+    <lastmod>2018-09-15T11:26:59+12:00</lastmod>
     <priority>0</priority>
   </url>
   

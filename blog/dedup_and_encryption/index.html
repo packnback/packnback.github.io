@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Deduplication and encryption</title>
+	
+	
+	<link rel="stylesheet" href="https://packnback.github.io/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.36.1" />
+
+	
+		
+		<script type="text/javascript">
+		var _paq = _paq || [];
+		 
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+		var u="https://packnback.innocraft.cloud/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', '1']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+		</script>
+		
+	
+</head>
+<body>
+	<header>
+		<a href="https://packnback.github.io/">packnback</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<h1>Deduplication and encryption</h1>
+			<time>September 15, 2018</time>
+			<div>
+				
+
+<p>One problem we have is deduplicating encrypted data so that the server
+is not able to guess what data is being stored. Here I will try to present a
+few schemes that might be acceptable and disuss some that are not.</p>
+
+<h1 id="git-model">Git model</h1>
+
+<p>If you are familiar with git, it takes the approach of hashing files, then storing
+them in a key value database where the hash is the key. This means the same file
+won&rsquo;t be stored twice across multiple source code snapshots. This approach
+is good, but leaves both data and hashes unencrypted where data is being stored.</p>
+
+<p>Pseudo code example:</p>
+
+<pre><code>db = {}
+data1 = &quot;hello\n&quot;
+address1 = sha1sum(data1)
+db[address1] = data1
+data2 = &quot;hello\n&quot;
+address2 = sha1sum(data2)
+db[address2] = &quot;hello\n&quot;
+show(db)
+-&gt; { &quot;f572d396fae9206628714fb2ce00f72e94f2258f&quot; : &quot;hello\n&quot; }
+
+</code></pre>
+
+<p>Even though we added data to our database twice, it was only stored a single time. If we remember both address1 and address2
+both will retrieve the same data, because the addresses are the same.</p>
+
+<h1 id="hash-then-encrypt">Hash then encrypt</h1>
+
+<p>If we apply encryption to the data:</p>
+
+<pre><code>db = {}
+
+recpient_public_key = transfer_via_pidgeon_post()
+sender_public_key, sender_secret_key = keypair()
+
+data1 = &quot;hello\n&quot;
+address1 = sha1sum(data1)
+encrypted1 = encrypt(sender_secret_key, recpient_public_key, data)
+db[address1] = (recpient_public_key, sender_public_key, encrypted1)
+
+# The db is now:
+show(db)
+-&gt; { &quot;f572d396fae9206628714fb2ce00f72e94f2258f&quot; : (recpient_public_key, sender_public_key, &quot;9853a5325dedc69527f688a0ff31620406c2d77a&quot;) }
+
+</code></pre>
+
+<p>This is close to what we need, however a snoopy storage server may still try a dictionary attack by running all english words
+through sha1sum, and finding f572d396fae9206628714fb2ce00f72e94f2258f, The server knows we have &ldquo;hello\n&rdquo; .</p>
+
+<h1 id="hmac-then-encrypt">HMAC then encrypt</h1>
+
+<p>HMAC functions are like cryptographic hashes, but incorporate a secret producing a unique hash function for that secret.</p>
+
+<pre><code>db = {}
+
+hmac_secret = new_secret()
+recpient_public_key = transfer_via_pidgeon_post()
+sender_private_key, sender_secret_key = keypair()
+
+data1 = &quot;hello\n&quot;
+address1 = HMAC(data1, hmac_secret)
+encrypted1 = encrypt(sender_private_key, recpient_public_key, data)
+db[address1] = (sender_pk, ,  encrypted1)
+
+# The db is now:
+show(db)
+-&gt; { &quot;7244e510ea361cbe17219a463a006a295247bc10&quot; : (recpient_public_key, sender_public_key, &quot;fc6de0834d85f243e5792b37f278fbf6c48b88a8&quot;) }
+
+</code></pre>
+
+<p>This is very good, a person reading the database does not know the secret, so cannot easily perform a dictionary attack.
+There is a weakness however&hellip; The sender can decrypt historical records in our database if he ever got access, sometimes
+we delete information and intend for it to remain deleted from the perspective of that user/system.</p>
+
+<h1 id="hmac-then-encrypt-with-ephemeral-keys">HMAC then encrypt with ephemeral keys</h1>
+
+<p>A simple addition, simply delete the sender private key after each set of storage operations.</p>
+
+<pre><code>forget(sender_private_key)
+</code></pre>
+
+<p>This protects us from future attackers, but we must trust the backup sender to forget the keys.</p>
+
+<h1 id="sharing-the-hmac-secret-with-the-recipient">Sharing the HMAC secret with the recipient</h1>
+
+<p>For the recipient to verify the integrity of the whole database, he needs the HMAC secret to ensure keys
+have not been tampered with. There are a few schemes that seem appropriate.</p>
+
+<ul>
+<li>Encrypt the hmac secret into each cipher text.</li>
+<li>Use public key cryptography to derive a shared secret between sender and recipient. This is enticing because we probably want to sign our backups with the identity of the sender anyway, so have a key pair to use.
+This key will be different to the ephemeral keys we used to encrypt our data with.</li>
+<li>Share the HMAC secret at the same time as we exchange public keys.</li>
+</ul>
+
+<h1 id="but-what-about">But what about &hellip;.</h1>
+
+<h3 id="hash-collisions">Hash collisions</h3>
+
+<p>Cryptographic hash functions are so difficult to find a collision for that we can effectively
+assume they don&rsquo;t happen.</p>
+
+<h3 id="building-a-filesystem-out-of-blocks">Building a filesystem out of blocks</h3>
+
+<p>A single block of data is not good for deduplicating a mirror image of a directory tree
+as any time a single file changed we need to reupload and store a whole copy. Luckily we can follow the git model
+and build a tree datastructure by allowing blocks to reference other blocks.</p>
+
+<p>A picture says a thousand words:</p>
+
+<p><img src="/dedup_and_encryption_fig1.png" alt="fig1" /></p>
+
+<p>With this scheme even if we uploaded the same directory twice on two different occasions, blocks would be shared across the
+snapshots.</p>
+
+<h3 id="can-we-apply-compression">Can we apply compression?</h3>
+
+<p>I <em>think</em> is no problem when compressing the plaintext after hashing but before encryption. I will wait for feedback on that.</p>
+
+<h3 id="can-we-deduplicate-within-and-across-files">Can we deduplicate within and across files?</h3>
+
+<p>Another post will cover that. The answer is yes.</p>
+
+<h3 id="post-quantum-cryptography">Post quantum cryptography?</h3>
+
+<p>Similar schemes could work with quantum resistent symmetric keys, however you will lose the ability to use
+ephemeral keys. You also lose the ability to derive the HMAC secret from sender and recipient key pairs.
+Perhaps there are some asymmetric post quantum algorithms
+that would be usable.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Hopefully I have explained how the same file can be encrypted and stored on a server, while
+allowing the server to discard copies based on an hmac address.</p>
+
+			</div>
+			<hr>
+			This project relies on sponsors and donations to survive, consider <a href="/donate/">donating</a>.
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2018 <a href="https://packnback.github.io/">packnback</a></p>
+	</footer>
+</body>
+</html>

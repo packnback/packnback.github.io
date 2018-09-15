@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on packnback</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Sep 2018 09:25:10 +1200</lastBuildDate>
+    <lastBuildDate>Sat, 15 Sep 2018 11:26:59 +1200</lastBuildDate>
     
 	<atom:link href="https://packnback.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deduplication and encryption</title>
+      <link>https://packnback.github.io/blog/dedup_and_encryption/</link>
+      <pubDate>Sat, 15 Sep 2018 11:26:59 +1200</pubDate>
+      
+      <guid>https://packnback.github.io/blog/dedup_and_encryption/</guid>
+      <description>One problem we have is deduplicating encrypted data so that the server is not able to guess what data is being stored. Here I will try to present a few schemes that might be acceptable and disuss some that are not.
+Git model If you are familiar with git, it takes the approach of hashing files, then storing them in a key value database where the hash is the key.</description>
+    </item>
     
     <item>
       <title>Asymmetric cryptography</title>
