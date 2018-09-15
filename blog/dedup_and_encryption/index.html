@@ -153,7 +153,7 @@ assume they don&rsquo;t happen&hellip; (provided we choose the hash function wis
 <h3 id="building-a-filesystem-out-of-blocks">Building a filesystem out of blocks</h3>
 
 <p>A single block of data is not good for deduplicating a mirror image of a directory tree
-as any time a single file changed we need to reupload and store a whole copy. Luckily we can follow the git model
+as any time a single file changed we need to reupload and store a whole lot of redundant data. Luckily we can follow the git model
 and build a tree datastructure by allowing blocks to reference other blocks.</p>
 
 <p>A picture says a thousand words:</p>
@@ -168,7 +168,7 @@ for server side garbage collection.</p>
 
 <h3 id="can-we-apply-compression">Can we apply compression?</h3>
 
-<p>I <em>think</em> is no problem when compressing the plaintext after hashing but before encryption. I will wait for feedback on that.</p>
+<p>I <em>think</em> there is no problem when compressing the plaintext after hashing but before encryption. I will wait for feedback on that.</p>
 
 <h3 id="can-we-deduplicate-within-and-across-files">Can we deduplicate within and across files?</h3>
 
