@@ -72,7 +72,7 @@ Only send a donation if you understand that donations don&amp;rsquo;t guarantee 
       <pubDate>Fri, 10 Aug 2018 09:25:10 +1200</pubDate>
       
       <guid>https://packnback.github.io/blog/work_begins/</guid>
-      <description>This is the beginning of a project to design and implement a new backup tool called packnback, which aims to provide an open source security sensitive backup tool.
+      <description>This is the beginning of a project to design and implement a new backup tool called packnback, which aims to provide a high performance, security conscious, open source, security conscious backup tool.
 It makes sense to explain why we should bother in the first place, and what interesting features a new tool can bring to the table.
 Ideal features Let&amp;rsquo;s list features that are important in a backup tool and them to existing tools so we get a good idea of the current backup tool choices you might have as an administrator trying to bullet proof a your server environment.</description>
     </item>
