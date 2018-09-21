@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Programming languages</title>
+	
+	
+	<link rel="stylesheet" href="https://packnback.github.io/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.36.1" />
+
+	
+		
+		<script type="text/javascript">
+		var _paq = _paq || [];
+		 
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+		var u="https://packnback.innocraft.cloud/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', '1']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+		</script>
+		
+	
+</head>
+<body>
+	<header>
+		<a href="https://packnback.github.io/">packnback</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<h1>Programming languages</h1>
+			<time>September 20, 2018</time>
+			<div>
+				
+
+<p>Choosing a programming language for a project is a compromise over what you
+what you need, what you have, what you know and what you like. This post
+is just my thought process when selecting the implementation for packnback.</p>
+
+<h1 id="what-we-need">What we need</h1>
+
+<ul>
+<li>High performance, we will hopefully be dealing with large volumes of data.</li>
+<li>High security, the whole purpose is to protect data from attackers.</li>
+<li>Stability, software needs to be usable well into the future.</li>
+<li>Simplicity, the less complicated something is, the less that can go wrong.</li>
+<li>Popularity, this is mainly to help with marketing, libraries and community support.</li>
+<li>High bus factor, will sudden unexpected events destroy the language prospects.</li>
+<li>Fun, something we enjoy using or evaluating.</li>
+</ul>
+
+<h1 id="what-we-have">What we have</h1>
+
+<p>The following ratings are just my unscientific and loose opinions, let me know if you disagree and why.
+I skipped many choices because there isn&rsquo;t enough time to consider everything.
+I mainly put languages I have some experience using or reading about.</p>
+
+<h3 id="c">C</h3>
+
+<ul>
+<li>performance 5 / 5</li>
+<li>security 0 / 5</li>
+<li>stability 5 / 5</li>
+<li>simplicity 5 / 5</li>
+<li>popularity 4 / 5</li>
+<li>bus-factor 5 / 5</li>
+<li>fun 2 / 5</li>
+</ul>
+
+<p>total 26 / 35</p>
+
+<p>In general, C would not be a bad choice if it werent for the track record
+of security problems. Even if we could avoid them in our code, the reputation
+damage is actually significant, &lsquo;Why is this in C?&rsquo; questions mean it
+gets a point off popularity.</p>
+
+<p>C gurus can make amazing things happen with few lines of code, (partially because the
+operating system is the garbage collector and abort() is the error handling) and in practice
+many issues can be mitigated with compiler hardening and tool augmentation like valgrind.</p>
+
+<h3 id="c-1">C++</h3>
+
+<ul>
+<li>performance 5 / 5</li>
+<li>security 2 / 5</li>
+<li>stability 5 / 5</li>
+<li>simplicity 1 / 5</li>
+<li>popularity 4 / 5</li>
+<li>bus-factor 5 / 5</li>
+<li>fun 0 / 5</li>
+</ul>
+
+<p>total 24 / 35</p>
+
+<p>I personally think C++ has gone off the complexity rails when it comes to
+features. It works and is performant, and does better than C with security&hellip; but a
+big problem is that I really do not enjoy writing C++ code anymore.</p>
+
+<p>The levels of OO programming that is idiomatic C++ also bothers me at times.
+Sometimes a float is a float and doesn&rsquo;t need 100 lines of class boilerplate to wrap it.</p>
+
+<h3 id="java">Java</h3>
+
+<ul>
+<li>performance 4 / 5</li>
+<li>security 5 / 5</li>
+<li>stability 5 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 5 / 5</li>
+<li>bus-factor 5 / 5</li>
+<li>fun 0 / 5</li>
+</ul>
+
+<p>total 27 / 35</p>
+
+<p>Java is pretty damn solid, I have also burned myself out on it. Languages for the JVM
+I can tolerate better like clojure however have greatly reduced performance and sit
+at a far lower bus factor.</p>
+
+<p>Someone once described Java classes and code layout like shrink wrapping individual
+grains of rice (but at least there is probably a &lsquo;Factory&rsquo; or IDE to do it for you).</p>
+
+<h3 id="python-ruby">Python/Ruby</h3>
+
+<ul>
+<li>performance 0 / 5</li>
+<li>security 4 / 5</li>
+<li>stability 5 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 5 / 5</li>
+<li>bus-factor 5 / 5</li>
+<li>fun 5 / 5</li>
+</ul>
+
+<p>total 27 / 35</p>
+
+<p>These languages are slow, and distributing code written in them is painful and
+complicated at best. They are fun and productive to use, though a bit error prone when
+your lines of code get above around 10k and you start forgetting what exceptions things
+can throw or don&rsquo;t have total test coverage.</p>
+
+<h3 id="go">Go</h3>
+
+<ul>
+<li>performance 3.5 / 5</li>
+<li>security 5 / 5</li>
+<li>stability 4.5 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 3.5 / 5</li>
+<li>bus-factor 4 / 5</li>
+<li>fun 4 / 5</li>
+</ul>
+
+<p>total 27.5 / 35</p>
+
+<p>Go is pretty rock solid, it works nearly everywhere, has quite a large
+number of projects invested into it already,
+has been stable for years and probably isn&rsquo;t going anywhere. Typing &lsquo;if err != nil&rsquo; has
+been giving me RSI recently and the bloated binary size and opaque runtime/memory
+management gives me some pause.</p>
+
+<p>One huge pet peeve of mine is a language with concurrency but no notion of immutability. I have
+been bitten by accidentally sharing a backing byte slice across function boundaries before and it
+left me a bit bitter and paranoid.</p>
+
+<h3 id="nim-https-nim-lang-org"><a href="https://nim-lang.org/">Nim</a></h3>
+
+<ul>
+<li>performance 4.5 / 5</li>
+<li>security 4 / 5</li>
+<li>stability 3 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 1 / 5</li>
+<li>bus-factor 1 / 5</li>
+<li>fun 5 / 5</li>
+</ul>
+
+<p>total 21.5 / 35</p>
+
+<p>Nim is a fun language, it performs extremely well from my
+tests, I think it is a shame that till now it was not more adopted.</p>
+
+<p>One problem is that if the creator lost interest the project would grind to a total halt,
+which may be a reason for the lack of adoption.</p>
+
+<p>The macro system seems amazing, I immediately used it to eliminate boilerplate making safe bindings
+to libsodium as a test and definitely enjoyed the process a lot.</p>
+
+<p>Reading github issues and the forum, I stumbled across many plans from 2013-2016 that show
+the project has some great ideas, but not enough man power. Reading the forum shows questions I had, asked by others, half answered and still undocumented.</p>
+
+<p>Nim really does feel like the speed of C with the ease+fun of python. A positive sign
+is the commit frequency is increasing over time, and they got sponsorship recently,
+but the project is far from mainstream.</p>
+
+<h3 id="rust-https-www-rust-lang-org"><a href="https://www.rust-lang.org">Rust</a></h3>
+
+<ul>
+<li>performance 5 / 5</li>
+<li>security 5 / 5</li>
+<li>stability 4 / 5</li>
+<li>simplicity 2 / 5</li>
+<li>popularity 3 / 5</li>
+<li>bus-factor 4 / 5</li>
+<li>fun 4 / 5</li>
+</ul>
+
+<p>total <sup>27</sup>&frasl;<sub>35</sub></p>
+
+<p>By all the metrics rust scores pretty well, my biggest concern is it will (or has) turn into
+C++ 2.0 in a bad way, a complicated behemoth.</p>
+
+<p>I don&rsquo;t find the code::that::appealing to look at including some minor things that imo
+make the code hard to scan through by eye. Though I need to be sure it is not just my
+own biases and non familiarity clouding my judgement.</p>
+
+<p>Fearless concurrency is definitely something that sells the language well to me, I feel very uneasy
+looking at concurrent code other people wrote where I can&rsquo;t infer which threads have what invariants easily.
+My understanding (which may be wrong) is with rust it doesn&rsquo;t really matter so much as the borrow checker rules also eliminate data races.</p>
+
+<h3 id="zig-https-github-com-ziglang-zig"><a href="https://github.com/ziglang/zig">Zig</a></h3>
+
+<ul>
+<li>performance 5 / 5</li>
+<li>security 3.5 / 5</li>
+<li>stability 2 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 2 / 5</li>
+<li>bus-factor 1 / 5</li>
+<li>fun 4 / 5</li>
+</ul>
+
+<p>total 20.5 / 35</p>
+
+<p>A great language focusing on robust software. The bus factor
+is an issue.</p>
+
+<p>I would have loved if zig could just compile to more or less idiomatic C
+and give projects an escape hatch if things aren&rsquo;t going well for zig development after all.</p>
+
+<p>Zig is the only language I know to have a totally seamless C interop where you can include
+C headers directly in zig code, other languages could learn from this.</p>
+
+<p>From a security standpoint it has some of the C pitfalls
+but can use bounds checking and things like arena allocators to mitigate manual memory management.</p>
+
+<h3 id="myrddin-https-myrlang-org"><a href="https://myrlang.org/">Myrddin</a></h3>
+
+<ul>
+<li>performance 3.5 / 5</li>
+<li>security 3.5 / 5</li>
+<li>stability 2 / 5</li>
+<li>simplicity 4 / 5</li>
+<li>popularity 1 / 5</li>
+<li>bus-factor 1 / 5</li>
+<li>fun 5 / 5</li>
+</ul>
+
+<p>total 20 / 35</p>
+
+<p>Much of what applies to zig applies to Myrddin, a solid and fun language.
+It is however less popular right now and doesn&rsquo;t have windows support.</p>
+
+<p>Myrddin does not use llvm and suffers in performance, but gains simplicity because of that.
+It is a joy to build the myrddin compiler from source in a few seconds compared to 20+ minutes
+that other langauges require.</p>
+
+<p>Myrddin&rsquo;s type inference in a C like context really feels quite magical to use. My favourite
+example was &lsquo;malloc()&rsquo; knowing and returning the right pointer type and size which it inferred automatically from
+another unrelated part of the code.</p>
+
+<h3 id="haskell">Haskell</h3>
+
+<ul>
+<li>performance ? / 5</li>
+<li>security 5 / 5</li>
+<li>stability 4 / 5</li>
+<li>simplicity 3 / 5</li>
+<li>popularity 3 / 5</li>
+<li>bus-factor ? / 5</li>
+<li>fun ? / 5</li>
+</ul>
+
+<p>total ? / 35</p>
+
+<p>This is a bit of a wild card, I am not experienced at all with haskell, but my impression
+is it may not be well suited to imperitive operations like read buffers from a stream and
+write buffers to a stateful database. I could be totally wrong or ignorant and would like
+to one day address my ignorance.</p>
+
+<h1 id="making-a-choice">Making a choice</h1>
+
+<p>In the end Python, Ruby, Java, Go and Rust are the contenders, which probably doesn&rsquo;t come
+as a surprise to anyone. Perhaps what surprised me is how high C rates all things considered.</p>
+
+<p>I originally thought I should discount python and ruby outright, but they rank quite
+highly in the scheme of things. In fact there are a few tools like &lsquo;bup&rsquo; written in a mix
+of C and python quite successfully. I am ruling these languages out just in the off chance
+that I can out perform existing software as a differentiator.</p>
+
+<p>With regard to java, I feel irrational, but simply don&rsquo;t enjoy using it or the
+programming styles it encourages, so I am just going to veto it.</p>
+
+<p>My gut feeling is that with rust you accept pain to get performance. Go code looks
+more minimal, the tools are simpler, and the language is easier to learn, but you will
+always question if you are getting the best of the best or just &lsquo;good enough&rsquo;.
+In the end we would probably regret aspects of either choice.</p>
+
+<p>This time I choose &hellip; <a href="https://github.com/packnback/packnback">rust</a>.</p>
+
+			</div>
+			<hr>
+			This project relies on sponsors and donations to survive, consider <a href="/donate/">donating</a>.
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2018 <a href="https://packnback.github.io/">packnback</a></p>
+	</footer>
+</body>
+</html>

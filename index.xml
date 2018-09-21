@@ -6,10 +6,20 @@
     <description>Recent content on packnback</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Sep 2018 11:26:59 +1200</lastBuildDate>
+    <lastBuildDate>Thu, 20 Sep 2018 11:26:59 +1200</lastBuildDate>
     
 	<atom:link href="https://packnback.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Programming languages</title>
+      <link>https://packnback.github.io/blog/programming_languages/</link>
+      <pubDate>Thu, 20 Sep 2018 11:26:59 +1200</pubDate>
+      
+      <guid>https://packnback.github.io/blog/programming_languages/</guid>
+      <description>Choosing a programming language for a project is a compromise over what you what you need, what you have, what you know and what you like. This post is just my thought process when selecting the implementation for packnback.
+What we need  High performance, we will hopefully be dealing with large volumes of data. High security, the whole purpose is to protect data from attackers. Stability, software needs to be usable well into the future.</description>
+    </item>
     
     <item>
       <title>Deduplication and encryption</title>
