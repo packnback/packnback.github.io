@@ -6,15 +6,26 @@
     <description>Recent content on packnback</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Sep 2018 11:26:59 +1200</lastBuildDate>
+    <lastBuildDate>Sat, 22 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://packnback.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Rust HACL</title>
+      <link>https://packnback.github.io/blog/rust_hacl/</link>
+      <pubDate>Sat, 22 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://packnback.github.io/blog/rust_hacl/</guid>
+      <description>Having chosen rust as the language to implement packnback with, I needed a high quality implementation of the Nacl cryptographic api.
+Luckily, I had previously read about the High-Assurance Cryptographic Library which uses the F* language and formal verification to produce a C library and thought I could use this as an opportunity to learn about the Rust C ffi.
+Here is the first bit of code. After finishing this, I found someone else had the same idea, but for now I want to maintain control over this dependency and it&amp;rsquo;s wrapper.</description>
+    </item>
+    
+    <item>
       <title>Programming languages</title>
       <link>https://packnback.github.io/blog/programming_languages/</link>
-      <pubDate>Thu, 20 Sep 2018 11:26:59 +1200</pubDate>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://packnback.github.io/blog/programming_languages/</guid>
       <description>Choosing a programming language for a project is a compromise over what you what you need, what you have, what you know and what you like. This post is just my thought process when selecting the implementation language for packnback.
@@ -24,7 +35,7 @@ What we need  High performance, we will hopefully be dealing with large volumes 
     <item>
       <title>Deduplication and encryption</title>
       <link>https://packnback.github.io/blog/dedup_and_encryption/</link>
-      <pubDate>Sat, 15 Sep 2018 11:26:59 +1200</pubDate>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://packnback.github.io/blog/dedup_and_encryption/</guid>
       <description>One problem we have is deduplicating encrypted data so that the server is not able to guess what data is being stored. Here I will try to present a few schemes that might be acceptable and disuss some that are not.
@@ -34,11 +45,22 @@ Git model If you are familiar with git, it takes the approach of hashing files, 
     <item>
       <title>Asymmetric cryptography</title>
       <link>https://packnback.github.io/blog/asymmetric_encryption/</link>
-      <pubDate>Fri, 14 Sep 2018 09:25:10 +1200</pubDate>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://packnback.github.io/blog/asymmetric_encryption/</guid>
       <description>Rather than spend time explaining (poorly) how public/asymmetric key cryptography works, I&amp;rsquo;ll just summarize the parts we will be using.
  A key is two parts, public and private. A message can be encrypted and addressed to a key. The public part of a key can be freely distributed. An encrypted message can only be decrypted by the corresponding private key part. A message can be &amp;lsquo;signed&amp;rsquo; by someone with the private key part.</description>
+    </item>
+    
+    <item>
+      <title>Work begins</title>
+      <link>https://packnback.github.io/blog/work_begins/</link>
+      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://packnback.github.io/blog/work_begins/</guid>
+      <description>This is the beginning of a project to design and implement a new backup tool called packnback, which aims to provide a high performance, security conscious, open source, security conscious backup tool.
+It makes sense to explain why we should bother in the first place, and what interesting features a new tool can bring to the table.
+Ideal features Let&amp;rsquo;s list features that are important in a backup tool and them to existing tools so we get a good idea of the current backup tool choices you might have as an administrator trying to bullet proof a your server environment.</description>
     </item>
     
     <item>
@@ -64,17 +86,6 @@ The official gpg public key for packnback@protonmail.com:
       <guid>https://packnback.github.io/donate/</guid>
       <description>Remember, this project needs you to survive, consider sponsoring it and it&amp;rsquo;s development. Donated Funds will be used to pay for server infrastructure as well as services to advance the project. Funds may also be allocated at the discretion of the account owner to pay developers contributing to the project.
 Only send a donation if you understand that donations don&amp;rsquo;t guarantee project success, they are not a binding contract, but may increase the chances of success.</description>
-    </item>
-    
-    <item>
-      <title>Work begins</title>
-      <link>https://packnback.github.io/blog/work_begins/</link>
-      <pubDate>Fri, 10 Aug 2018 09:25:10 +1200</pubDate>
-      
-      <guid>https://packnback.github.io/blog/work_begins/</guid>
-      <description>This is the beginning of a project to design and implement a new backup tool called packnback, which aims to provide a high performance, security conscious, open source, security conscious backup tool.
-It makes sense to explain why we should bother in the first place, and what interesting features a new tool can bring to the table.
-Ideal features Let&amp;rsquo;s list features that are important in a backup tool and them to existing tools so we get a good idea of the current backup tool choices you might have as an administrator trying to bullet proof a your server environment.</description>
     </item>
     
   </channel>

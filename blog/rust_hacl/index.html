@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Rust HACL</title>
+	
+	
+	<link rel="stylesheet" href="https://packnback.github.io/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.36.1" />
+
+	
+		
+		<script type="text/javascript">
+		var _paq = _paq || [];
+		 
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+		var u="https://packnback.innocraft.cloud/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', '1']);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+		</script>
+		
+	
+</head>
+<body>
+	<header>
+		<a href="https://packnback.github.io/">packnback</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<article>
+			<h1>Rust HACL</h1>
+			<time>September 22, 2018</time>
+			<div>
+				<p>Having chosen rust as the language to implement packnback with, I needed a high
+quality implementation of the Nacl cryptographic api.</p>
+
+<p>Luckily, I had previously read about the <a href="https://github.com/project-everest/hacl-star">High-Assurance Cryptographic Library</a>
+which uses the F* language and formal verification to produce a C library and thought I could use this as an opportunity to learn
+about the Rust C ffi.</p>
+
+<p><a href="https://github.com/packnback/rust-haclstar">Here</a> is the first bit of code. <em>After</em> finishing this, I found someone
+else had the <a href="https://github.com/quininer/rust-hacl-star">same idea</a>, but for now I want to maintain control over this
+dependency and it&rsquo;s wrapper.</p>
+
+<p>I made some small additions to the C api while playing with rust:</p>
+
+<ul>
+<li>Rust naming conventions for types.</li>
+<li>Boxing (unique pointers) secret keys to minimize accidental possible copies in memory.</li>
+<li>Wiping secret keys on drop.</li>
+<li>Misuse resistant type wrappers around Secret/Public keys.</li>
+<li>Assertions around api preconditions.</li>
+</ul>
+
+			</div>
+			<hr>
+			This project relies on sponsors and donations to survive, consider <a href="/donate/">donating</a>.
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2018 <a href="https://packnback.github.io/">packnback</a></p>
+	</footer>
+</body>
+</html>
